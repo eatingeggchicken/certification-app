@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .person-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        .person-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Certificate List</h1>
+
+        {% for (name, dob), certificates in grouped_data.items() %}
+        <div class="person-section">
+            <div class="person-header">
+                {{ name }}. {{ dob }}
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Certificate No</th>
+                        <th>Method</th>
+                        <th>Level</th>
+                        <th>Issue Date</th>
+                        <th>Expiry Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cert in certificates %}
+                    <tr>
+                        <td>{{ cert['certificate_no'] }}</td>
+                        <td>{{ cert['method'] }}</td>
+                        <td>{{ cert['level'] }}</td>
+                        <td>{{ cert['issue_date'] }}</td>
+                        <td>{{ cert['expiry_date'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

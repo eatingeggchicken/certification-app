@@ -1,0 +1,122 @@
+rtc-korea searching
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
+    <style>
+        hr {
+            border: none;
+            border-top: 3px solid #333;
+            margin: 20px0;
+        }
+        .id-text{
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 3%;  
+            margin-left: 33.33%;
+
+        }
+        .id-input-box{
+            display: block;
+            margin: 10px 0 10px 33.33%;
+            padding: 10px;
+            font-size: 18px;
+            width: 33.3%;
+            border: 2px solid #000000;
+            border-radius: 8px;
+        }
+        .name-text{
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 3%;  
+            margin-left: 33.33%;
+
+        }
+        .name-input-box{
+            display: block;
+            margin: 10px 0 10px 33.33%;
+            padding: 10px;
+            font-size: 18px;
+            width: 12%;
+            border: 2px solid #000000;
+            border-radius: 8px;
+        }
+        .birth-text{
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 3%;  
+            margin-left: 33.33%;
+
+        }
+        .birth-input-box{
+            display: block;
+            margin: 10px 0 10px 33.33%;
+            padding: 10px;
+            font-size: 18px;
+            width: 18%;
+            border: 2px solid #000000;
+            border-radius: 8px;
+        }
+        .search-btn{
+            display: block;
+            margin: 20px 0 20px 66.66%;
+            padding: 12px;
+            font-size: 20px;
+            width: auto;
+            border: 2px solid #4A90E2; 
+            border-radius: 8px;
+            background-color: #4A90E2;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+
+        }
+
+        @media (max-width: 768px){
+            .id-input-box, .name-input-box, .birth-input-box{
+                width: 70%;
+                margin-left: 10%;
+                margin-right: 10%
+            }
+            .id-text, .name-text, .birth-text{
+                margin-left: 10%;
+                margin-top: 10%;
+                font-size: 28px;
+            }
+        
+            hr {
+                width: 90%;
+            }
+            .search-btn{
+                width: auto;
+                margin-left: 60;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Certificate Verification</h1>
+    <hr>
+    <form method="GET" action="/search">
+        <p class="id-text">ID No.</p>
+        <input type="text" class="id-input-box" name="id" placeholder="ID 번호를 입력하세요.">
+        <p class="name-text">Name</p>
+        <input type="text" class="name-input-box" name="name" placeholder="이름을 입력하세요.">
+        <p class="birth-text">Date of Birth</p>
+        <input type="text" class="birth-input-box" name="birth" placeholder="생년월일을 입력하세요(6자리).">
+        <button class="search-btn">Search</button>
+    </form>
+</body>
+</html>
