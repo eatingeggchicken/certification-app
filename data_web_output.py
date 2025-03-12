@@ -38,7 +38,7 @@ def index():
 
         return render_template('output_now.html', grouped_data=grouped_data)
 
-    return render_template('index.html') #페이지 띄우기
+    return render_template('ktc_korea.html') #페이지 띄우기
 
 if __name__ == '__main__':
     app.run(debug=True)
