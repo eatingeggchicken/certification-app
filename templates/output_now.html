@@ -67,6 +67,11 @@
                         <td>{{ cert['expiry_date'] }}</td>
                     </tr>
                     {% endfor %}
+                    
+                    {% if message %}
+                        <p>{{ message }}</p>
+                    
+
                 </tbody>
             </table>
         </div>

@@ -11,7 +11,7 @@ if insert_ok:
     cursor.execute('''
     INSERT INTO certification (name, birth, certificate_no, method, level, issue_date, expiry_date)
     VALUES (?, ?, ?, ?, ?, ?, ?)
-    ''', ("Park Hae Cheon", "681231", "12766-2019-00", "RT", "3", "2020.10.06", "2025.10.24"))
+    ''', ("Park Hae Cheon", "010103", "12766-2019-00", "R", "2", "2020.10.06", "2025.10.30"))
 
 
 # 삭제          + 삭제하고 아래 행들을 위로 당겨야 나중에 추가되는걸 쓰기 편할듯

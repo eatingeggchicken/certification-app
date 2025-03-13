@@ -5,7 +5,7 @@ import sqlite3
 connection = sqlite3.connect('certification.db')
 cursor = connection.cursor()
 
-# 테이블 생성
+# 테이블 생성 + 이미 있으면 생성안되니
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS certification (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

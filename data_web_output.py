@@ -23,6 +23,10 @@ def index():
         ''', (name_input, birth_input, f'%{id_input}%'))
         rows = cursor.fetchall()
         conn.close()
+        
+        # 추가 항목
+        if not rows:
+            return render_template('output_now.html', message="No Data Found.")
 
         # 데이터를 이름과 생년월일을 기준으로 그룹화
         grouped_data = defaultdict(list)
@@ -35,6 +39,8 @@ def index():
                 'issue_date': issue_date,
                 'expiry_date': expiry_date
             })
+        
+        
 
         return render_template('output_now.html', grouped_data=grouped_data)
 
