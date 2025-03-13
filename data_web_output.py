@@ -26,7 +26,7 @@ def index():
         
         # 추가 항목
         if not rows:
-            return render_template('output_now.html', message="No Data Found.", grouped_data=None)
+            return render_template('output_now.html', message="No Data Found.", grouped_data={}) # 안쓰는데 걍 빈칸으로 냅두는게 아쉽긴
 
         # 데이터를 이름과 생년월일을 기준으로 그룹화
         grouped_data = defaultdict(list)
