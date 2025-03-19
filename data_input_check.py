@@ -6,12 +6,12 @@ conn = sqlite3.connect('certification.db')
 cursor = conn.cursor()
 
 # 삽입
-insert_ok = True
+insert_ok = False
 if insert_ok:
     cursor.execute('''
     INSERT INTO certification (name, birth, certificate_no, method, level, issue_date, expiry_date)
     VALUES (?, ?, ?, ?, ?, ?, ?)
-    ''', ("Park Hae Cheon", "010103", "12766-2019-00", "R", "2", "2020.10.06", "2025.10.30"))
+    ''', ("Park Gun", "050112", "12766-2020-00", "R", "3", "2020.10.06", "2025.10.30"))
 
 
 # 삭제          + 삭제하고 아래 행들을 위로 당겨야 나중에 추가되는걸 쓰기 편할듯

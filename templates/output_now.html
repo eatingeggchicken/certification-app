@@ -9,16 +9,16 @@
             font-family: Arial, sans-serif;
         }
         .container {
-            width: 80%;
+            width: 90%;
             margin: 20px auto;
             text-align: center;
         }
         .person-section {
-            margin-bottom: 30px;
             padding: 15px;
             border: 2px solid #ddd;
             border-radius: 8px;
             text-align: left;
+            overflow-x: auto;
         }
         .person-header {
             font-size: 18px;
@@ -33,7 +33,7 @@
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
-            text-align: left;
+            text-align: center;
         }
         th {
             background-color: #f2f2f2;
@@ -45,11 +45,47 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+                width: 100%;
+            }
+        
+            thead {
+                display: none; /* 테이블 헤더 숨기기 */
+            }
+        
+            tr {
+                border: 1px solid #ddd;
+                margin-bottom: 10px;
+                padding: 10px;
+                border-radius: 8px;
+                background: #f9f9f9;
+            }
+        
+            td {
+                text-align: left;
+                padding: 8px;
+                display: flex;
+                justify-content: space-between;
+            }
+        
+            td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                flex: 1;
+            }
+        
+            td:last-child {
+                border-bottom: none;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Certificate List</h1>
+        <h1>Certificate Verification</h1>
 
         {% if message %}
             <p class="no-data">{{ message }}</p>
@@ -86,4 +122,16 @@
         {% endfor %}
     </div>
 </body>
+<tbody>
+    {% for cert in certificates %}
+    <tr>
+        <td data-label="Certificate No">{{ cert['certificate_no'] }}</td>
+        <td data-label="Method">{{ cert['method'] }}</td>
+        <td data-label="Level">{{ cert['level'] }}</td>
+        <td data-label="Issue Date">{{ cert['issue_date'] }}</td>
+        <td data-label="Expiry Date">{{ cert['expiry_date'] }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+
 </html>
