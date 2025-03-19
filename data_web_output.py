@@ -38,7 +38,7 @@ def index():
                     'expiry_date': expiry_date
                 })
 
-            # 기존 페이지 형식을 유지하면서 메시지만 추가
+            # 메시지 추가
             message = "No Data Found." if not grouped_data else ""
             return render_template('output_now.html', message=message, grouped_data=grouped_data)
 
