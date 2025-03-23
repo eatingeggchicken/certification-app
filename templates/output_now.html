@@ -89,7 +89,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Certificate Verification</h1>
+        <h1>
+            <img src="{{ url_for('static', filename='favicon.ico') }}" alt="로고" width="50">
+            Certificate Verification
+        </h1>
 
         {% if message %}
             <p class="no-data">{{ message }}</p>
