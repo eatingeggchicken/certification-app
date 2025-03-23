@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
         }
         .container {
-            width: 90%;
+            width: 95%;
             margin: 20px auto;
             text-align: center;
         }
@@ -51,7 +51,10 @@
                 display: block;
                 width: 90%;
             }
-        
+            thead {
+                display: none;
+            }
+
             tr {
                 border: 1px solid #ddd;
                 margin-bottom: 10px;
@@ -70,12 +73,16 @@
             td::before {
                 content: attr(data-label);
                 font-weight: bold;
-                flex: 1;
+                display: inline-block;
+                width: 40%;  /* Label takes 40% of width */
+                text-align: left;
+                margin-right: 10px;
             }
         
             td:last-child {
                 border-bottom: none;
             }
+
         }
     </style>
 </head>
@@ -105,11 +112,11 @@
                 <tbody>
                     {% for cert in certificates %}
                     <tr>
-                        <td>{{ cert['certificate_no'] }}</td>
-                        <td>{{ cert['method'] }}</td>
-                        <td>{{ cert['level'] }}</td>
-                        <td>{{ cert['issue_date'] }}</td>
-                        <td>{{ cert['expiry_date'] }}</td>
+                        <td data-label="Certificate No">{{ cert['certificate_no'] }}</td>
+                        <td data-label="Method">{{ cert['method'] }}</td>
+                        <td data-label="Level">{{ cert['level'] }}</td>
+                        <td data-label="Issue Date">{{ cert['issue_date'] }}</td>
+                        <td data-label="Expiry Date">{{ cert['expiry_date'] }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -118,16 +125,5 @@
         {% endfor %}
     </div>
 </body>
-<tbody>
-    {% for cert in certificates %}
-    <tr>
-        <td data-label="Certificate No">{{ cert['certificate_no'] }}</td>
-        <td data-label="Method">{{ cert['method'] }}</td>
-        <td data-label="Level">{{ cert['level'] }}</td>
-        <td data-label="Issue Date">{{ cert['issue_date'] }}</td>
-        <td data-label="Expiry Date">{{ cert['expiry_date'] }}</td>
-    </tr>
-    {% endfor %}
-</tbody>
 
 </html>
