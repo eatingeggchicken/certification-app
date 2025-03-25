@@ -12,9 +12,12 @@ def index():
         birth_input = request.form.get('birth', '').strip()
 
         # 입력값 검증
-        if not name_input or not birth_input:
-            return render_template('output_now.html', message="이름과 생년월일을 입력하세요.", grouped_data={})
-
+        if not name_input:
+            return render_template('output_now.html', message="Please enter your name.", grouped_data={})
+        elif not birth_input:
+            return render_template('output_now.html', message="Please enter your birth.", grouped_data={})
+        
+        
         try:
             # 데이터베이스 연결 및 데이터 가져오기
             with sqlite3.connect('certification.db') as conn:
