@@ -12,22 +12,39 @@ def index():
         birth_input = request.form.get('birth', '').strip()
 
         # 입력값 검증
-        if not name_input:
-            return render_template('output_now.html', message="Please enter your name.", grouped_data={})
-        elif not birth_input:
-            return render_template('output_now.html', message="Please enter your birth.", grouped_data={})
+        if not id_input and not name_input and not birth_input:
+            return render_template('output_now.html', message="Please enter at least one item.", grouped_data={})
         
         
         try:
             # 데이터베이스 연결 및 데이터 가져오기
             with sqlite3.connect('certification.db') as conn:
                 cursor = conn.cursor()
-                cursor.execute('''
-                    SELECT name, birth, certificate_no, method, level, issue_date, expiry_date
-                    FROM certification
-                    WHERE name = ? AND birth = ? AND certificate_no LIKE ?
-                ''', (name_input, birth_input, f'%{id_input}%'))
-                rows = cursor.fetchall()
+                
+                conditions = []
+                values = []
+                
+                if name_input:
+                    conditions.append("name = ?")
+                    values.append(name_input)
+                if birth_input:
+                    conditions.append("birth = ?")
+                    values.append(birth_input)
+                if id_input:
+                    conditions.append("certificate_no LIKE ?")
+                    values.append(f"%{id_input}%") 
+
+                if conditions:
+                    query = f'''
+                        SELECT name, birth, certificate_no, method, level, issue_date, expiry_date
+                        FROM certification
+                        WHERE {' OR '.join(conditions)}
+                    '''
+                    cursor.execute(query, values)
+                    rows = cursor.fetchall()
+                else:
+                    rows = []
+              
 
             # 데이터를 이름과 생년월일을 기준으로 그룹화
             grouped_data = defaultdict(list)
