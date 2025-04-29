@@ -11,7 +11,7 @@ if insert_ok:
     cursor.execute('''
     INSERT INTO certification (name, birth, certificate_no, method, level, issue_date, expiry_date)
     VALUES (?, ?, ?, ?, ?, ?, ?)
-    ''', ("Park Gun", "050112", "12766-2020-00", "R", "3", "2020.10.06", "2025.10.30"))
+    ''', ("Park, Jae Hwang", "811019", "00020-2025-00", "TO", "2", "2025.04.29", "2030.04.29"))
 
 
 # 삭제          + 삭제하고 아래 행들을 위로 당겨야 나중에 추가되는걸 쓰기 편할듯
@@ -19,7 +19,7 @@ delete_ok = False #사용할때 True로 바꾸기
 if delete_ok:
     cursor.execute('''
     DELETE FROM certification WHERE certificate_no = ?
-    ''', (" ",)) # 비워져 있는 부분에 삭제할 데이터 CERTIFICATE_NO 해놓으면 됨
+    ''', ("00004-2025-00",)) # 비워져 있는 부분에 삭제할 데이터 CERTIFICATE_NO 해놓으면 됨
     
 # 삭제 sub 데이터 관리하면서 쓸 것
 subdel_ok = False
@@ -37,6 +37,6 @@ cursor.execute('SELECT * FROM certification')
 rows = cursor.fetchall()
 for row in rows:
     print(row)
-
+    
 # 연결 종료
 conn.close()
