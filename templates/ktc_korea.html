@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <style>
+        h1 {
+            text-align: center;
+        }
+        hr {
+            border: none;
+            border-top: 3px solid #333;
+            margin: 20px0;
+        }
+        .id-text, .name-text, .birth-text {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 3%;
+            margin-left: 33.33%;
+        }
+        .id-input-box, .name-input-box, .birth-input-box {
+            display: block;
+            margin: 10px 0 10px 33.33%;
+            padding: 10px;
+            font-size: 18px;
+            width: 33.3%;
+            border: 2px solid #000000;
+            border-radius: 8px;
+        }
+        .search-btn {
+            display: block;
+            margin: 20px 0 20px 66.66%;
+            padding: 12px;
+            font-size: 20px;
+            width: auto;
+            border: 2px solid #4A90E2;
+            border-radius: 8px;
+            background-color: #4A90E2;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .id-input-box, .name-input-box, .birth-input-box {
+                width: 70%;
+                margin-left: 15%;
+            }
+            .id-text, .name-text, .birth-text {
+                margin-left: 15%;
+                margin-top: 15%;
+                font-size: 28px;
+            }
+            hr {
+                width: 90%;
+            }
+            .search-btn {
+                width: auto;
+                margin-left: 15%;
+            }
+        }   
+    </style>
+    <script>
+    function formatID(input) {
+        let value = input.value.replace(/[^0-9]/g, '');
+
+        if (value.length > 5 && value.length <= 9) {
+            value = value.slice(0, 5) + '-' + value.slice(5);
+        } else if (value.length > 9) {
+            value = value.slice(0, 5) + '-' + value.slice(5, 9) + '-' + value.slice(9, 11);
+        }
+
+        input.value = value;
+    }
+</script>
+</head>
+<body>
+    <h1>
+        <img src="{{ url_for('static', filename='favicon.ico') }}" alt="로고" width="50">
+        Certificate Verification
+    </h1>
+    <hr>
+    <!-- ✅ method 수정됨: GET 방식으로 주소창에 반영 -->
+    <form method="GET" action="/">
+        <p class="id-text">ID No.</p>
+        <input type="text" class="id-input-box" name="id" placeholder="Enter the ID(XXXXX-XXXX-XX)." oninput="formatID(this)" maxlength="14">
+        <p class="name-text">Name</p>
+        <input type="text" class="name-input-box" name="name" placeholder="Enter the name(Ex. Hong, Gil Dong).">
+        <p class="birth-text">Date of Birth</p>
+        <input type="text" class="birth-input-box" name="birth" placeholder="Enter the birth(6-digits)." maxlength="6">
+        <button class="search-btn">Search</button>
+    </form>
+</body>
+</html>
