@@ -6,44 +6,52 @@
     <title>Certificate List</title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <style>
-        h1{
+        h1 {
             margin-top: 6%;
             margin-bottom: 5%;
         }
+
         body {
             font-family: Arial, sans-serif;
         }
+
         .container {
             width: 60%;
             margin-left: 20%;
             margin-top: 20px;
             text-align: center;
         }
+
         .person-section {
             padding: 15px;
-            border: None;
+            border: none;
             border-radius: 8px;
             text-align: left;
             overflow-x: auto;
         }
+
         .person-header {
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 10px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
+
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
         }
+
         th {
             background-color: #f2f2f2;
         }
+
         .no-data {
             color: red;
             font-weight: bold;
@@ -93,6 +101,13 @@
                 line-height: 1.4;
                 border: none;
                 border-bottom: 1px solid #eee;
+
+                /* 한 줄 유지 + 넘칠 경우 말줄임 */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                flex-wrap: nowrap;
+                gap: 10px;
             }
 
             td::before {
@@ -101,14 +116,27 @@
                 flex: 1;
                 text-align: left;
                 padding-right: 10px;
+
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 50%;
+                flex-shrink: 1;
+            }
+
+            td span {
+                display: inline-block;
+                font-size: clamp(12px, 4vw, 16px); /* 화면 크기에 따라 자동 축소 */
+                white-space: nowrap;              /* 줄바꿈 방지 */
+                overflow: hidden;
+                flex-shrink: 1;                   /* 공간 부족하면 너비 줄이기 허용 */
+                text-align: right;
             }
 
             td:last-child {
                 border-bottom: none;
             }
         }
-
-
     </style>
 </head>
 <body>
@@ -140,11 +168,11 @@
                 <tbody>
                     {% for cert in certificates %}
                     <tr>
-                        <td data-label="Certificate No">{{ cert['certificate_no'] }}</td>
-                        <td data-label="Method">{{ cert['method'] }}</td>
-                        <td data-label="Level">{{ cert['level'] }}</td>
-                        <td data-label="Issue Date">{{ cert['issue_date'] }}</td>
-                        <td data-label="Expiry Date">{{ cert['expiry_date'] }}</td>
+                        <td data-label="Certificate No"><span>{{ cert['certificate_no'] }}</span></td>
+                        <td data-label="Method"><span>{{ cert['method'] }}</span></td>
+                        <td data-label="Level"><span>{{ cert['level'] }}</span></td>
+                        <td data-label="Issue Date"><span>{{ cert['issue_date'] }}</span></td>
+                        <td data-label="Expiry Date"><span>{{ cert['expiry_date'] }}</span></td>
                     </tr>
                     {% endfor %}
                 </tbody>
