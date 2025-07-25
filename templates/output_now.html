@@ -67,6 +67,12 @@
         }
 
         @media (max-width: 768px) {
+            . container{
+                width: 95%;
+                margin: 0 auto;
+                padding: 0 8px;
+            }
+            
             table {
                 border: none;
                 border-collapse: collapse;
@@ -87,7 +93,7 @@
 
             tr {
                 display: block;
-                margin-bottom: 10px;
+                margin-bottom: 6px;
                 border: none;
                 background: none;
             }
@@ -96,18 +102,15 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 6px 0;
-                font-size: 16px;
+                padding: 4px 0;
+                font-size: 15px;
                 line-height: 1.4;
                 border: none;
                 border-bottom: 1px solid #eee;
-
-                /* 한 줄 유지 + 넘칠 경우 말줄임 */
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                flex-wrap: nowrap;
-                gap: 10px;
+                gap: 6px; /* 좌우 간격 최소화 */
             }
 
             td::before {
@@ -115,21 +118,21 @@
                 font-weight: bold;
                 flex: 1;
                 text-align: left;
-                padding-right: 10px;
-
+                padding-right: 4px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 max-width: 50%;
                 flex-shrink: 1;
+                font-size: 15px;
             }
 
             td span {
-                display: inline-block;
-                font-size: clamp(12px, 4vw, 16px); /* 화면 크기에 따라 자동 축소 */
-                white-space: nowrap;              /* 줄바꿈 방지 */
+                white-space: nowrap;
                 overflow: hidden;
-                flex-shrink: 1;                   /* 공간 부족하면 너비 줄이기 허용 */
+                text-overflow: ellipsis;
+                font-size: clamp(12px, 3.5vw, 15px);
+                flex-shrink: 1;
                 text-align: right;
             }
 
