@@ -60,47 +60,55 @@
 
         @media (max-width: 768px) {
             table {
-                margin-top: 10px;
-                display: block;
-                width: 100%;
-                margin-bottom: 10px;
+                border: none;
                 border-collapse: collapse;
+                background: none;
+                box-shadow: none;
+                width: 100%;
+                margin: 0 auto;
             }
-            th {
+
+            thead {
                 display: none;
             }
+
             tbody {
                 display: block;
                 width: 100%;
             }
-            thead {
-                display: none;
-            }
+
             tr {
                 display: block;
-                width: auto;
-                border: 1px solid #ddd;
-                margin-bottom: 20px;
-                padding: 10px;
-                border-radius: 8px;
-                background: #f9f9f9;
+                margin-bottom: 10px;
+                border: none;
+                background: none;
             }
+
             td {
                 display: flex;
                 justify-content: space-between;
-                padding: 8px;
+                align-items: center;
+                padding: 6px 0;
+                font-size: 16px;
+                line-height: 1.4;
+                border: none;
+                border-bottom: 1px solid #eee;
             }
+
             td::before {
                 content: attr(data-label);
                 font-weight: bold;
-                width: 40%;
+                flex: 1;
                 text-align: left;
-                margin-right: 10px;
+                padding-right: 10px;
             }
+
             td:last-child {
                 border-bottom: none;
             }
         }
+
+
     </style>
 </head>
 <body>
