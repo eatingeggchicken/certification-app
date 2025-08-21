@@ -38,7 +38,7 @@ if insert_ok:
     cursor.execute("""
     INSERT INTO certification (name, birth, certificate_no, method, level, issue_date, expiry_date)
     VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, ("Hwang Tom", "810526", "00013-2025-00", "UT-PA", "2", "2025.08.01", "2028.02.28"))
+    """, ("Jang Hoon", "None", "00027-2025-00", "UT-PA", "2", "2025.08.29", "2030.08.29"))
 
 # === certificate_no 로 삭제 ===
 delete_ok = False  # True로 바꾸면 실행
