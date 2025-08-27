@@ -33,7 +33,7 @@ conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
 
 # === 데이터 삽입 ===
-insert_ok = True
+insert_ok = False
 if insert_ok:
     cursor.execute("""
     INSERT INTO certification (name, birth, certificate_no, method, level, issue_date, expiry_date)
