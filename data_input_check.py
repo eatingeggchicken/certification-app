@@ -5,7 +5,7 @@ import shutil
 from datetime import datetime
 
 # === DB 경로 설정(절대경로 고정) ===
-DB_PATH = r"C:\Users\82108\Desktop\my\work\certiapp_ver2\certification.db"
+DB_PATH = r"C:\Users\82108\Desktop\my\1work\certiapp_ver2\certification.db"
 
 # === 유틸: 경로/연결 정보 출력 ===
 def print_db_info():
@@ -37,24 +37,25 @@ def init_db():
             method TEXT,
             level TEXT,
             issue_date TEXT,
-            expiry_date TEXT
+            expiry_date TEXT,
+            sector TEXT
         )
         """)
         conn.commit()
     print("✅ DB와 certification 테이블 준비 완료")
 
 # === CRUD 함수들 ===
-def insert_cert(name, birth, certificate_no, method, level, issue_date, expiry_date):
+def insert_cert(name, birth, certificate_no, method, level, issue_date, expiry_date, sector):
     """안전 삽입(즉시 커밋). 중복이면 에러 메세지 표시."""
     try:
         with sqlite3.connect(DB_PATH) as conn:
             cur = conn.cursor()
             cur.execute("""
                 INSERT INTO certification
-                (name, birth, certificate_no, method, level, issue_date, expiry_date)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            """, (name, birth, certificate_no, method, level, issue_date, expiry_date))
-            print(f"✅ INSERT OK id={cur.lastrowid} | {name} / {certificate_no} / {method}")
+                (name, birth, certificate_no, method, level, issue_date, expiry_date, sector)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """, (name, birth, certificate_no, method, level, issue_date, expiry_date, sector))
+            print(f"✅ INSERT OK id={cur.lastrowid} | {name} / {certificate_no} / {method} / {sector}")
     except sqlite3.IntegrityError as e:
         print("⚠️ INSERT 실패(무결성 위반/중복 가능):", e)
 
@@ -93,7 +94,7 @@ def show_row_by_certificate_no(certificate_no):
     with sqlite3.connect(DB_PATH) as conn:
         cur = conn.cursor()
         cur.execute("""
-            SELECT id, name, birth, certificate_no, method, level, issue_date, expiry_date
+            SELECT id, name, birth, certificate_no, method, level, issue_date, expiry_date, sector
             FROM certification WHERE certificate_no = ?
         """, (certificate_no,))
         rows = cur.fetchall()
@@ -116,8 +117,8 @@ if __name__ == "__main__":
     backup_db()       # 실행 전 백업(원치 않으면 주석 처리)
     init_db()
 
-    # === 플래그 (당신 코드 스타일 유지) ===
-    insert_ok   = True
+    # === 플래그 ===
+    insert_ok   = False
     delete_ok   = False   # certificate_no 기준 삭제
     subdel_ok   = False    # name 기준 삭제
     delete_id_ok = False  # id 기준 삭제
@@ -132,9 +133,10 @@ if __name__ == "__main__":
         "level": "2",
         "issue_date": "2025.08.01",
         "expiry_date": "2030.08.01",
+        "sector" : "sw",
     }
 
-    delete_certificate_no_target = "000-2025-00"
+    delete_certificate_no_target = "00037-2025-00"
     delete_name_target = "Kim, Dae Min"
     delete_id_target = 46
 
@@ -157,6 +159,7 @@ if __name__ == "__main__":
             insert_record["level"],
             insert_record["issue_date"],
             insert_record["expiry_date"],
+            insert_record["sector"],
         )
 
     # === certificate_no 로 삭제 ===

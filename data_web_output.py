@@ -32,7 +32,7 @@ def index():
 
             if conditions:
                 query = f'''
-                    SELECT name, birth, certificate_no, method, level, issue_date, expiry_date
+                    SELECT name, birth, certificate_no, method, level, issue_date, expiry_date, sector
                     FROM certification
                     WHERE {' OR '.join(conditions)}
                 '''
@@ -43,13 +43,14 @@ def index():
 
         grouped_data = defaultdict(list)
         for row in rows:
-            name, birth, certificate_no, method, level, issue_date, expiry_date = row
+            name, birth, certificate_no, method, level, issue_date, expiry_date, sector = row
             grouped_data[(name, birth)].append({
                 'certificate_no': certificate_no,
                 'method': method,
                 'level': level,
                 'issue_date': issue_date,
-                'expiry_date': expiry_date
+                'expiry_date': expiry_date,
+                'sector' : sector
             })
 
         message = "No Data Found." if not grouped_data else ""
