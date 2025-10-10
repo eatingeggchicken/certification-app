@@ -126,24 +126,38 @@ if __name__ == "__main__":
 
     # === 대상 값들 (원래 코드 값 그대로 둠) ===
     insert_record = {
-        "name": "Oh, Ki Rok",
-        "birth": "851214",
-        "certificate_no": "00037-2025-00",
-        "method": "UT-PA",
+        "name": "Sim, Hyeon Min",
+        "birth": "921119",
+        "certificate_no": "00040-2025-00",
+        "method": "RT",
         "level": "2",
-        "issue_date": "2025.08.01",
-        "expiry_date": "2030.08.01",
-        "sector" : "sw",
+        "issue_date": "2025.10.20",
+        "expiry_date": "2030.10.20",
+        "sector" : "sm",
     }
 
     delete_certificate_no_target = "00037-2025-00"
     delete_name_target = "Kim, Dae Min"
     delete_id_target = 46
 
-    update_id_target = 47
+    '''
+    # 여러개 수정할때 사용
+    for number in range(26, 50):
+        update_id_target = number
+        update_values = {
+        # "birth": "19740527",
+        "issue_date": "2025.10.20",
+        "expiry_date": "2030.10.20"
+        }
+        if update_id_ok:
+            update_by_id(update_id_target, **update_values)
+    '''
+    
+    update_id_target = 50
     update_values = {
-        "birth": "19740527",
-        # "expiry_date": "2031.12.31"
+        # "birth": "19740527",
+        "issue_date": "2025.10.20",
+        "expiry_date": "2030.10.20"
     }
 
     # === 사전 점검(선택) ===
@@ -175,6 +189,7 @@ if __name__ == "__main__":
         delete_by_id(delete_id_target)
 
     # === id 기준 수정 ===
+    
     if update_id_ok:
         update_by_id(update_id_target, **update_values)
 
