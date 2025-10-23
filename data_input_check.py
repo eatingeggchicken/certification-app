@@ -153,11 +153,11 @@ if __name__ == "__main__":
             update_by_id(update_id_target, **update_values)
     '''
     
-    update_id_target = 50
+    update_id_target = 55
     update_values = {
         # "birth": "19740527",
-        "issue_date": "2025.10.20",
-        "expiry_date": "2030.10.20"
+        # "issue_date": "2025.10.20",
+        "expiry_date": "2030.06.04"
     }
 
     # === 사전 점검(선택) ===
