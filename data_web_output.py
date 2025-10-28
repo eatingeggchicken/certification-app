@@ -16,7 +16,6 @@ def index():
     try:
         with sqlite3.connect('certification.db') as conn:
             cursor = conn.cursor()
-
             conditions = []
             values = []
 

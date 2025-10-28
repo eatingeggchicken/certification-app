@@ -38,19 +38,24 @@
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0 15px;  /*표 칸*/
+            border: none;
+            background-color: transparent;
             margin-top: 20px;
         }
 
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            padding: 10px 8px;
             text-align: center;
+            border: none;
         }
 
-        th {
-            background-color: #f2f2f2;
+        tr {
+            background-color: white;
+            box-shadow: inset 0 -1px 0 #000;
         }
+        
 
         .no-data {
             color: red;
