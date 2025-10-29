@@ -26,7 +26,7 @@
             margin-top: 8%;
             margin-left: 0;
         }
-        .id-input-box, .name-input-box, .birth-input-box {
+        .id-input-box, .fname-input-box, .sname-input-box, .birth-input-box {
             display: block;
             margin: 10px 0 10px ;
             padding: 10px;
@@ -36,12 +36,28 @@
             border-radius: 1px;
             box-sizing: border-box;
         }
+
+        .name-row {
+            display: flex;
+            width: 100%;
+            gap: 5%;
+        }
+
+        .fname-input-box {
+            flex: 0 0 23%;
+        }
+
+        .sname-input-box {
+            flex: 0 0 72%;
+        }
+
+        .sname-input-box{width: 72%;}
         .search-btn {
             display: block;
             margin: 24px 0 20px auto; 
             padding: 12px;
             font-size: 20px;
-            width: fit-content;/*내용만큼만*/
+            width: fit-content;
             border: 2px solid #4A90E2;
             border-radius: 8px;
             background-color: #4A90E2;
@@ -51,12 +67,33 @@
             box-sizing: border-box;
         }
         @media (max-width: 768px) {
-            .id-input-box, .name-input-box, .birth-input-box {
+            form {
+            width: 100%;
+            margin-left: 0%;
+            box-sizing: border-box;
+            }
+            .id-input-box, .birth-input-box {
                 width: 80%;
                 margin-left: 10%;
                 font-size: 14px;
                 padding: 8px;
             }
+            .name-row {
+                display: flex;
+                width: 80%;
+                margin-left: 10%;
+            }
+
+            .fname-input-box {
+                flex: 0 0 23%;
+                font-size: 14px;
+            }
+
+            .sname-input-box {
+                flex: 0 0 72%;
+                font-size: 14px;
+            }
+
             .id-text, .name-text, .birth-text {
                 margin-left: 10%;
                 margin-top: 20px;
@@ -75,6 +112,7 @@
 
     </style>
     <script>
+        /* 편의성 고려는 ver3에 이어서*/
     function formatID(input) {
         let value = input.value.replace(/[^0-9]/g, '');
 
@@ -83,7 +121,6 @@
         } else if (value.length > 9) {
             value = value.slice(0, 5) + '-' + value.slice(5, 9) + '-' + value.slice(9, 11);
         }
-
         input.value = value;
     }
 </script>
@@ -94,13 +131,16 @@
         Certificate Verification
     </h1>
     <hr>
-    <!-- ✅ method 수정됨: GET 방식으로 주소창에 반영 -->
+    <!-- method 수정됨: GET 방식으로 주소창에 반영 -->
     <form method="GET" action="/">
         <p class="id-text">ID No.</p>
         <input type="text" class="id-input-box" name="id" placeholder="Enter the ID(XXXXX-XXXX-XX)." oninput="formatID(this)" maxlength="14">
         <p class="name-text">Name</p>
-        <input type="text" class="name-input-box" name="name" placeholder="Enter the name(Ex. Hong, Gil Dong).">
-        <p class="birth-text">Date of Birth</p>
+        <div class="name-row">
+            <input type="text" class="fname-input-box" name="first_name" placeholder="First name.">
+            <input type="text" class="sname-input-box" name="second_name" placeholder="Enter the second name.(Ex. Gil Dong)">
+        </div>
+            <p class="birth-text">Date of Birth</p>
         <input type="text" class="birth-input-box" name="birth" placeholder="Enter the birth(6-digits)." maxlength="6">
         <button class="search-btn">Search</button>
     </form>

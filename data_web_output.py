@@ -4,13 +4,16 @@ from collections import defaultdict
 
 app = Flask(__name__)
 
+# 새로운 코드 주석은 ver2 수정사항
 @app.route('/', methods=['GET'])
 def index():
     id_input = request.args.get('id', '').strip()
-    name_input = request.args.get('name', '').strip()
+    name_first = request.args.get('first_name', '').strip()
+    name_second = request.args.get('second_name', '').strip()
+    name_input = f"{name_first}, {name_second}"
     birth_input = request.args.get('birth', '').strip()
 
-    if not id_input and not name_input and not birth_input:
+    if not id_input and not name_first and not name_second and not birth_input:
         return render_template('ktc_korea.html')
 
     try:
