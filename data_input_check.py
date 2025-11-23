@@ -126,14 +126,14 @@ if __name__ == "__main__":
 
     # === 대상 값들 (원래 코드 값 그대로 둠) ===
     insert_record = {
-        "name": "Sim, Hyeon Min",
-        "birth": "921119",
-        "certificate_no": "00040-2025-00",
-        "method": "RT",
-        "level": "2",
-        "issue_date": "2025.10.20",
-        "expiry_date": "2030.10.20",
-        "sector" : "sm",
+        "name": "Ko, Kyoung Sik",
+        "birth": "820201",
+        "certificate_no": "00042-2025-00",
+        "method": "UT-TO",
+        "level": "3",
+        "issue_date": "2025.12.01",
+        "expiry_date": "2030.07.10",
+        "sector" : "sw",
     }
 
     delete_certificate_no_target = "00037-2025-00"
@@ -142,24 +142,26 @@ if __name__ == "__main__":
 
     '''
     # 여러개 수정할때 사용
-    for number in range(26, 50):
+    for number in range(25, 51):
         update_id_target = number
         update_values = {
         # "birth": "19740527",
-        "issue_date": "2025.10.20",
-        "expiry_date": "2030.10.20"
+        "issue_date": "2025.12.01",
+        "expiry_date": "2030.07.10"
         }
         if update_id_ok:
             update_by_id(update_id_target, **update_values)
-    '''
     
-    update_id_target = 55
+    '''
+    update_id_target = 11
     update_values = {
         # "birth": "19740527",
         # "issue_date": "2025.10.20",
-        "expiry_date": "2030.06.04"
+        # "expiry_date": "2030.06.04"
+        "method":"UT",
+        "sector":"sm"
     }
-
+    
     # === 사전 점검(선택) ===
     show_row_by_certificate_no(insert_record["certificate_no"])
 
